@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 
 const CountdownTimer = ({ initialSeconds, title }) => {
   const [seconds, setSeconds] = useState(initialSeconds);
-  let [timerTitle, setTimertitle] = useState(title);
+  const [timerId, setTimerId] = useState(null);
+  
+  //change the color of the clock card/component if it is
+  //morning (yellow color) or 
+  //afternon (puple) or
+  //evening (dark blue)
+
+  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     // Exit early if countdown is finished
@@ -10,16 +17,16 @@ const CountdownTimer = ({ initialSeconds, title }) => {
       return;
     }
 
-    // Set up the timer
-    const timer = setInterval(() => {
+    // Set up the timer and save the timer ID to state
+    const id = setInterval(() => {
       setSeconds((prevSeconds) => prevSeconds - 1);
     }, 1000);
+    setTimerId(id);
 
     // Clean up the timer
-    return () => clearInterval(timer);
+    return () => clearInterval(id);
   }, [seconds]);
 
-  // Format the remaining time (e.g., “00:05:10” for 5 minutes and 10 seconds)
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60)
       .toString()
@@ -28,18 +35,37 @@ const CountdownTimer = ({ initialSeconds, title }) => {
     return `${minutes}:${seconds}`;
   };
 
-  // Change the title directly based on some condition (e.g., component mount)
-  //  if ((title = "")) {
-  //   setTitle("Isabelle");
-  //  console.log(title);
+  const stopTimer = () => {
+    // Clear the interval using the saved timer ID
+    clearInterval(timerId);
+    setTimerId(null); // Reset the timer ID to null after stopping
+  };
+
+  const playTimer = () => {
+    // Resume the timer by setting up a new interval
+    const id = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds - 1);
+    }, 1000);
+    setTimerId(id);
+  };
+
+  const pauseTimer = () => {
+    // Pause the timer by clearing the interval
+    clearInterval(timerId);
+    console.log(pauseTimer)
+  };
+
+  const today = new Date();
+  //console.log(today)
+  
 
   return (
     <div className="clock">
       <h2>{title}</h2>
       <p>{formatTime(seconds)}</p>
-      <button>stop</button>
-      <button>play</button>
-      <button>pause</button>
+      <button onClick={stopTimer}>Stop time</button>
+      <button onClick={playTimer}>Play</button>
+      <button onClick={pauseTimer}>Pause</button>
     </div>
   );
 };

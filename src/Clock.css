@@ -6,35 +6,35 @@
 } */
 
 .clock {
-    color: #91bace;
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-family: monospace;
-    /* text-align: left; */
-    padding: 30px;
-    /* display: flex; */
-    align-items: baseline;
-    /* text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.94); */
-    background-color: #0c1622eb;
-    opacity: 70%;
-    padding: 15px;
-    width: 450px;
-    border-radius: 10px;
-  }
-  
-  .clock:hover {
-    background-color: rgb(235, 245, 253);
-    opacity: 50%;
-    transition: 0.3s;
-    color: black;
-    /* backdrop-filter: blur(3px); */
-  }
-  
-  /* .clock-container:hover {
+  color: #91bace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: monospace;
+  /* text-align: left; */
+  padding: 30px;
+  /* display: flex; */
+  align-items: baseline;
+  /* text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.94); */
+  background-color: #0c1622eb;
+  opacity: 70%;
+  padding: 15px;
+  width: 450px;
+  border-radius: 10px;
+}
+
+.clock:hover {
+  background-color: rgb(235, 245, 253);
+  opacity: 50%;
+  transition: 0.3s;
+  color: black;
+  /* backdrop-filter: blur(3px); */
+}
+
+/* .clock-container:hover {
     backdrop-filter: blur(1px);
   } */
-  
-  /* .clock-container:hover .clock {
+
+/* .clock-container:hover .clock {
       filter: blur(10px);
       transform: scale(0.9);
       opacity: 0.5;
@@ -45,3 +45,25 @@
       transform: scale(1.1);
       opacity: 1;
   } */
+
+/* .daytime .clock {
+  background-color: yellow;
+}
+
+.clock .nighttime {
+    background-color: black;
+} */
+
+
+  
+  .clock-container.daytime {
+    /* Daytime styles */
+    background-color: #deaa0e;
+    color: #333;
+  }
+  
+  .clock-container.nighttime {
+    /* Nighttime styles */
+    background-color: #333;
+    color: #fff;
+  }
